@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# vehicle-insurance-quotes-frontend (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Interfaz web para la gestión de **Clientes** y **Cotizaciones de Vehículos**, desarrollada en **React.js** y conectada a la API del backend Laravel.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Requisitos
 
-### `npm start`
+- Node.js >= 18
+- npm >= 9
+- Navegador moderno (Chrome, Edge, Firefox)
+- Backend Laravel ejecutándose en `http://127.0.0.1:8000`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalación
 
-### `npm test`
+```bash
+cd vehicle-insurance-quotes-frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm install
+```
 
-### `npm run build`
+Levantar el servidor de desarrollo(El backend corriendo):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Abrir en el navegador:  
+👉 `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Estructura del proyecto
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+src/
+│
+├── components/
+│   ├── Clients.js        # Módulo de gestión de clientes
+│   └── Quotes.js         # Módulo de gestión de cotizaciones
+│
+├── App.js                # Enrutamiento principal (Clientes / Cotizaciones)
+├── index.js              # Punto de entrada
+└── styles.css            # Estilos base (si aplica)
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Funcionalidades principales
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 🧍‍♂️ Clientes
 
-## Learn More
+- Crear, actualizar y eliminar clientes.
+- Campos requeridos:
+  - Nombre
+  - Correo electrónico
+  - Cédula/RUC
+- Tabla con listado de clientes.
+- Botones **Editar** y **Eliminar**.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 🚘 Cotizaciones
 
-### Code Splitting
+- Crear y actualizar cotizaciones asociadas a clientes.
+- Consultar prima (valor del seguro) con servicio externo:
+  - `https://68fe50c97c700772bb13737d.mockapi.io/api/test/quotes`
+- Subir documentos asociados (PDF/JPG).
+- Cambiar estado y registrar historial automáticamente.
+- Filtros:
+  - Estado (`pending`, `review`, `approved`, `rejected`, `closed`)
+  - Cliente (por ID)
+  - Año (rango `start_year` - `end_year`)
+- Paginación del listado.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Configuración de entorno (opcional)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Si el backend no está en el mismo host o puerto, puedes modificar la URL base en los archivos:
 
-### Making a Progressive Web App
+```js
+// Ejemplo (Quotes.js / Clients.js)
+const API_URL = "http://127.0.0.1:8000/api";
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Ejecución en producción
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Generar build optimizada:
 
-### Deployment
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Esto creará la carpeta `build/`, lista para desplegar en cualquier servidor estático.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## API utilizada (Backend)
+
+- **Clientes:** `/api/clients`
+- **Cotizaciones:** `/api/quotes`
+- **Subida de documentos:** `/api/quotes/{id}/documents`
+- **Correo de notificación:** `/api/quotes/{id}/send-mail`
+
+---
+
+## Errores comunes
+
+- **CORS error:** habilitar `CORS` en Laravel (middleware o paquete `fruitcake/laravel-cors`).
+- **Backend apagado:** asegurarse de que `php artisan serve` esté activo.
+- **Archivo inválido:** solo se permiten PDF o JPG en la subida de documentos.
+
+---
+
+## Notas finales
+
+- El proyecto no usa Bootstrap ni librerías externas de estilo.
+- Se utiliza **React Icons** (`react-icons`) para botones de acción (buscar/agregar).
+- Compatible con cualquier backend Laravel >= 9 configurado según el README del backend.
+
+---
+
+
+**Autor:** Jose Mora  
+**Proyecto:** Vehicle Insurance Quotes Frontend  
+**Versión:** 1.0.0  
+**Framework:** React 18
