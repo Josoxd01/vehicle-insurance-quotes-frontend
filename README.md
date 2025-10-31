@@ -75,28 +75,6 @@ src/
   - Año (rango `start_year` - `end_year`)
 - Paginación del listado.
 
----
-
-## Configuración de entorno (opcional)
-
-Si el backend no está en el mismo host o puerto, puedes modificar la URL base en los archivos:
-
-```js
-// Ejemplo (Quotes.js / Clients.js)
-const API_URL = "http://127.0.0.1:8000/api";
-```
-
----
-
-## Ejecución en producción
-
-Generar build optimizada:
-
-```bash
-npm run build
-```
-
-Esto creará la carpeta `build/`, lista para desplegar en cualquier servidor estático.
 
 ---
 
@@ -119,7 +97,6 @@ Esto creará la carpeta `build/`, lista para desplegar en cualquier servidor est
 
 ## Notas finales
 
-- El proyecto no usa Bootstrap ni librerías externas de estilo.
 - Se utiliza **React Icons** (`react-icons`) para botones de acción (buscar/agregar).
 - Compatible con cualquier backend Laravel >= 9 configurado según el README del backend.
 
