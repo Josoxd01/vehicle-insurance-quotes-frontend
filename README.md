@@ -50,7 +50,7 @@ src/
 
 ## Funcionalidades principales
 
-### 🧍‍♂️ Clientes
+###  Clientes
 
 - Crear, actualizar y eliminar clientes.
 - Campos requeridos:
@@ -62,7 +62,7 @@ src/
 
 ---
 
-### 🚘 Cotizaciones
+###  Cotizaciones
 
 - Crear y actualizar cotizaciones asociadas a clientes.
 - Consultar prima (valor del seguro) con servicio externo:
